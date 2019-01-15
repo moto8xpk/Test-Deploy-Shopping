@@ -26,7 +26,7 @@ app.use(express.static(__dirname + '/dist/shopping-store'));
 
 app.get('/*', function(req,res) {
     
-res.sendFile(path.join(__dirname+'/dist/shopping-store/index.html'));
+res.sendFile(path.join(__dirname+'/dist/index.html'));
 });
 
 

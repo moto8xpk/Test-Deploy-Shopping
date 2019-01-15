@@ -31,4 +31,4 @@ res.sendFile(path.join(__dirname+'/dist/shopping-store/index.html'));
 
 
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080, () => console.log(`server started!`));
+app.listen(process.env.PORT || 8080);

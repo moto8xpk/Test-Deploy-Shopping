@@ -1,0 +1,38 @@
+#header-admin{
+    background-color: yellowgreen !important;
+    height: 80px;
+}
+#sidebar-admin{
+    background-color: black !important;
+
+}
+#content-admin{
+    background-color: whitesmoke !important;
+    
+}
+#footer-admin{
+    background-color: yellowgreen !important;
+    height: 150px;
+}
+ul#nav-bar li{
+    background-color: black !important;
+    color: whitesmoke !important;
+}
+ul#nav-bar li{
+    background-color: black !important;
+    color: whitesmoke !important;
+}
+ul#nav-bar li:hover {
+    background-color:darkcyan !important;
+    color: black !important;
+}
+a#id-logo{
+    font-size: 30px !important;
+}
+#content-admin{
+    padding-top: 10px !important;
+}
+#sidebar-link{
+    text-decoration: none;
+    color: azure;
+}

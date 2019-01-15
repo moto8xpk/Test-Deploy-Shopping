@@ -1,0 +1,39 @@
+#page-logo{
+    font-family: Georgia !important;
+    font-weight: 250;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #4a4e4d;
+    text-align: left;
+    padding: 10px;
+    background-color: aliceblue;
+    border-style: double;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+#page-logo2{
+    font-family: Georgia !important;
+    font-weight: 250;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #4a4e4d;
+    text-align: left;
+    padding: 10px;
+    background-color: aliceblue;
+    border-style: double;
+    font-weight: bold;
+    opacity: 0.9;
+    margin-top: 10px;
+}
+ul#menu-left li{
+    width: 33.3333%;
+}
+div#best-seller-bar{
+    background-color: #ffffff !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+div#best-sell{
+    border: double lightsteelblue !important;
+}

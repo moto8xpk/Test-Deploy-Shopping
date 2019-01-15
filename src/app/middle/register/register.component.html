@@ -1,0 +1,96 @@
+
+<div class="row justify-content-center">
+  <div id="logging-form" class="col-sm-12">
+      <h2>Register</h2>
+    <form (ngSubmit)="onSubmit()" #customerForm="ngForm">
+      <!-- {{diagnostic}} -->
+      <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="text" class="form-control" id="username" [(ngModel)]="model.username" name="username" #username="ngModel"
+          required placeholder="Enter Username">
+        <small id="emailHelp" class="form-text text-muted"></small>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+            <div *ngIf="username?.errors?.required">
+                Username is required
+              </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="model.password" name="password"
+          #password="ngModel" required placeholder="Password">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+            <div *ngIf="password?.errors?.required">
+                 Password is required
+              </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Retype password</label>
+        <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="model.confirmPassword" name="confirmPassword"
+          #confirmPassword="ngModel" required compare="password" placeholder="Retype password">
+
+        <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
+          <div *ngIf="confirmPassword?.errors?.required">
+            Retype password is required
+          </div>
+          <div *ngIf="confirmPassword?.errors?.compare">
+            Password not match
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label for="exampleInputEmail1">Fullname</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="model.name" name="name" #name="ngModel"
+            required placeholder="Enter Fullname">
+          <small id="emailHelp" class="form-text text-muted"></small>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+              <div *ngIf="name?.errors?.required">
+                  Fullname is required etsts
+                </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="model.email" name="email" #email="ngModel"
+              required placeholder="Enter Email">
+            <small id="emailHelp" class="form-text text-muted"></small>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                <div *ngIf="email?.errors?.required">
+                    Email is required
+                  </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+              <label for="exampleInputEmail1">Address</label>
+              <input type="text" class="form-control" id="address" [(ngModel)]="model.address" name="address" #address="ngModel"
+                required placeholder="Enter Address">
+              <small id="emailHelp" class="form-text text-muted"></small>
+              <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+                  <div *ngIf="address?.errors?.required">
+                      Address is required
+                    </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Phone Number</label>
+                <input type="text" class="form-control" id="phone" [(ngModel)]="model.phone" name="phone" #phone="ngModel"
+                  required placeholder="Enter Username">
+                <small id="emailHelp" class="form-text text-muted"></small>
+                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+                    <div *ngIf="phone?.errors?.required">
+                        Phone Number is required
+                      </div>
+                </div>
+              </div>
+
+
+      <button type="submit" class="btn btn-primary" [disabled]='!customerForm.valid'>Submit</button>
+    </form>
+  </div>
+</div>

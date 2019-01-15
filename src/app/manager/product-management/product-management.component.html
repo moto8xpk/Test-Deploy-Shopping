@@ -1,0 +1,228 @@
+<div id="top-bar" class="row">
+    <button type="button" (click)="open(contentRegister)" class="btn btn-primary">Insert New Product</button>
+</div>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Image Link</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="products?.length != 0">
+        <tr *ngFor="let product of products">
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.productCategory.name}}</td>
+            <td>{{ product.desc }}</td>
+            <td>
+                <img class="img-list" src="{{product.imagelink}}">
+            </td>
+            <td>
+                <a (click)="onDeleteProduct(product.id)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
+                -
+                <a (click)="onUpdate(content,product.id)">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Product</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <form (ngSubmit)="onUpdateSubmit()" #productForm="ngForm">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Product Name</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="product.name" name="name" #name="ngModel"
+                    required placeholder="Enter Product Name">
+                <small id="emailHelp" class="form-text text-muted"></small>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    <div *ngIf="name?.errors?.required">
+                        Product Name is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Price</label>
+                <input type="text" class="form-control" id="price" [(ngModel)]="product.price" name="price" #price="ngModel"
+                    required placeholder="Enter Price">
+                <small id="emailHelp" class="form-text text-muted"></small>
+                <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+                    <div *ngIf="price?.errors?.required">
+                        Price is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group purple-border">
+                    <label for="exampleFormControlTextarea4">Description</label>
+                    <textarea class="form-control" id="desc" [(ngModel)]="product.desc" name="desc" #desc="ngModel"
+                        rows="3"></textarea>
+                </div>
+
+                <small id="emailHelp" class="form-text text-muted"></small>
+                <div *ngIf="desc.invalid && (desc.dirty || address.touched)" class="alert alert-danger">
+                    <div *ngIf="desc?.errors?.required">
+                        Dessciption is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Category Name</label>
+                <input type="text" class="form-control" id="productcatename" [(ngModel)]="product.productCategoryName"
+                    name="productcatename" #productcatename="ngModel" required placeholder="Enter Category Name">
+                <small id="emailHelp" class="form-text text-muted"></small>
+
+                <div *ngIf="productcatename.invalid && (productcatename.dirty || productcatename.touched)" class="alert alert-danger">
+                    <div *ngIf="productcatename?.errors?.required">
+                        Category Name is required
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div *ngIf="currentFileUpload" class="progress" style="width:400px">
+                <div class="progress-bar progress-bar-info progress-bar-striped"
+                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                    aria-valuemin="0" aria-valuemax="100"
+                    [ngStyle]="{width:progress.percentage+'%'}">
+                    {{progress.percentage}}%</div>
+            </div>
+             
+            <label class="btn btn-default"> 
+                <input type="file" (change)="selectFile($event)">
+            </label>
+             
+            <button class="btn btn-success" [disabled]="!selectedFiles"
+                (click)="upload()">Upload</button> -->
+
+            <img [src]="url" height="200"> <br />
+            <input type='file' (change)="onSelectFile($event)">
+
+            <br />
+            <button type="submit" class="btn btn-primary" [disabled]='!productForm.valid'>Submit</button>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" [hidden]="true" (click)="modal.close('Save click')">Save</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Save click')">Cancel</button>
+    </div>
+</ng-template>
+
+<ng-template #contentRegister let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <form (ngSubmit)="onSubmit()" #newForm="ngForm">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Product Name</label>
+                <input type="text" class="form-control" id="name1" [(ngModel)]="model2.name" name="name1" #name1="ngModel"
+                    required placeholder="Enter product name">
+                <small id="emailHelp1" class="form-text text-muted"></small>
+                <div *ngIf="name1.invalid && (name1.dirty || name1.touched)" class="alert alert-danger">
+                    <div *ngIf="name1?.errors?.required">
+                        Product Name is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Price</label>
+                <input type="text" class="form-control" id="price1" [(ngModel)]="model2.price" name="price1" #price1="ngModel"
+                    required placeholder="Enter Price">
+                <small id="emailHelp" class="form-text text-muted"></small>
+                <div *ngIf="price1.invalid && (price1.dirty || price1.touched)" class="alert alert-danger">
+                    <div *ngIf="price1?.errors?.required">
+                        Price is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-group purple-border">
+                    <label for="exampleFormControlTextarea4">Description</label>
+                    <textarea class="form-control" id="desc1" [(ngModel)]="model2.desc" name="desc1" #desc1="ngModel"
+                        rows="3"></textarea>
+                </div>
+
+                <small id="emailHelp" class="form-text text-muted"></small>
+                <div *ngIf="desc1.invalid && (desc1.dirty || desc1.touched)" class="alert alert-danger">
+                    <div *ngIf="desc1?.errors?.required">
+                        Dessciption is required
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Category Name</label>
+                <!-- <input type="text" class="form-control" id="productcatename1" [(ngModel)]="model1.productCategoryName"
+                    name="productcatename1" #productcatename1="ngModel" required placeholder="Enter Category Name"> -->
+                 
+                <!-- <ng-select [items]="newArrTest"  placeholder="No city selected">
+                </ng-select> -->
+                <ng-select  id="productcatename1" [(ngModel)]="model2.productCategoryId"
+                name="productcatename1" #productcatename1="ngModel" required placeholder="Select Category Name">              
+                
+                    <ng-option *ngFor="let cate of categories" [value]="cate.id ">{{cate.name}}</ng-option>
+
+                </ng-select>
+                
+             <small id="emailHelp" class="form-text text-muted"></small>
+
+                <div *ngIf="productcatename1.invalid && (productcatename1.dirty || productcatename1.touched)" class="alert alert-danger">
+                    <div *ngIf="productcatename1?.errors?.required">
+                        Category Name is required
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div *ngIf="currentFileUpload" class="progress" style="width:400px">
+                <div class="progress-bar progress-bar-info progress-bar-striped"
+                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                    aria-valuemin="0" aria-valuemax="100"
+                    [ngStyle]="{width:progress.percentage+'%'}">
+                    {{progress.percentage}}%</div>
+            </div>
+             
+            <label class="btn btn-default"> 
+                <input type="file" (change)="selectFile($event)">
+            </label>
+             
+            <button class="btn btn-success" [disabled]="!selectedFiles"
+                (click)="upload()">Upload</button> -->
+
+            <img [src]="url" height="200"> <br />
+            <input type='file' (change)="onSelectFile($event)">
+
+            <br />
+            <button type="submit" class="btn btn-primary" [disabled]='!newForm.valid'>Submit</button>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" [hidden]="true" (click)="modal.close('Save click')">Save</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Save click')">Cancel</button>
+    </div>
+</ng-template>

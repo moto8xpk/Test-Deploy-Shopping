@@ -1,0 +1,16 @@
+.jumbotron{
+    padding: 2rem 2rem !important;
+}
+.carousel-inner img {
+    width: 100%;
+    height: 500px;
+}
+.carousel-caption{
+    color: black !important;
+}
+#card-food-item{
+    width: 100%;
+}
+.card-img-top{
+    height: 500px !important;
+}

@@ -1,0 +1,42 @@
+<div class="row">
+    <div *ngFor="let product of products; let i=index; let odd=odd;" [class.odd]="odd" class="col-sm-6">
+      <div *ngIf="i<4" id="card-food-item" class="card">
+        <a (click)="onDetailProduct(content,product.id)">
+        <img class="card-img-top" src="{{product.imagelink}}" alt="Card image cap">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p id="text-desc" class="card-text">{{product.desc}}</p>
+          <p class="card-text">Price: {{product.price}} $</p>
+          <p class="card-text">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+          </p>
+          <a href="#" class="btn btn-primary">ADD TO CART</a>
+        </div>
+    </div>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h1 id="product-detail">Product's Detail</h1>
+      <p id="product-name">Product's Name: {{this.model.name}}</p>
+      <p id="product-desc">Description: {{this.model.desc}}</p>
+      <p id="product-price">Price: {{this.model.price}}</p>
+      <p id="product-cate">Category: {{this.model.productCategoryName}}</p>
+      <p id="product-image"><img id="img-product" src="{{this.model.imagelink}}" alt=""></p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" [hidden]="true" (click)="modal.close('Save click')">Save</button>
+      <button type="button" class="btn btn-outline-dark"  (click)="modal.dismiss('Save click')">Cancel</button>
+    </div>
+  </ng-template>

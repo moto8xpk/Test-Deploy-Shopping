@@ -1,0 +1,29 @@
+<app-layout>
+  <div class="row">
+      <div class="col-sm-12">
+          <ul id="navbar-center" class="nav bg-light justify-content-center">
+              <li class="nav-item">
+                <!-- <a class="nav-link" [routerLink]="['/homepage/junkfoodcategory']" >JUNK FOOD</a> -->
+                <a class="nav-link" href="/homepage/junkfoodcategory" >JUNK FOOD</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/homepage/seafoodcategory']">SEA FOOD</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/homepage/main']">BAKERY</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/homepage/main']">FRUIT</a>
+              </li>
+            </ul>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-sm-4">
+        <app-side-bar></app-side-bar>
+      </div>
+  </div>
+</app-layout>

@@ -1,0 +1,69 @@
+<h2 id="page-logo" [hidden]="LoginFlat">Log in</h2>
+<div class="row justify-content-center" [hidden]="LoginFlat">
+  <div id="logging-form" class="col-sm-10">
+    <form (ngSubmit)="onSubmit(content)" #loginform="ngForm">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Username</label>
+        <input type="text" class="form-control" id="Username" [(ngModel)]="model.username" name="Username"
+          #username="ngModel" required placeholder="Username">
+        <small id="emailHelp" class="form-text text-muted"></small>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+          <div *ngIf="username?.errors?.required">
+            Username is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="Password" [(ngModel)]="model.password" name="Password"
+          #password="ngModel" required placeholder="Password">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+          <div *ngIf="password?.errors?.required">
+            Password is required
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary"  [disabled]='!loginform.valid'>LOG IN</button>
+    </form>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Notice</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    <!-- <form>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </form> -->
+    {{messageString}}
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" [hidden]="true" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-dark"  (click)="modal.dismiss('Save click')">Cancel</button>
+  </div>
+</ng-template>
+
+<h2 id="page-logo1" [hidden]="LoginedFlat">Profile</h2>
+<div class="row justify-content-center" [hidden]="LoginedFlat">
+  <div id="logging-form1" class="col-sm-10">
+    <p class="welcom-text">Welcome {{customerNew.name}} !</p>
+    <br>
+    <button id="btn-log-out" type="button" class="btn btn-outline-dark"  (click)="Logout()">Logout</button>
+    <br>
+    <a id="cart-link" [routerLink]="['/homepage/cart']">Cart</a>
+  </div>
+</div>

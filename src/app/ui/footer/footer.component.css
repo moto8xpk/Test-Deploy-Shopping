@@ -1,0 +1,10 @@
+.navbar{
+    opacity: 0.7;
+}
+span{
+    font-family: 'Source Serif Pro';
+    font-size: 14px;
+    margin-left: 10px;
+    font-weight: bold;
+    color: azure;
+}

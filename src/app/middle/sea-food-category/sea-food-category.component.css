@@ -1,0 +1,26 @@
+.card-img-top{
+    height: 500px !important;
+    transition: transform .2s;
+    /* width: 100% !important; */
+}
+.card-img-top:hover {
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2); 
+  }
+
+.checked {
+    color: orange;
+}
+#text-desc{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#card-food-item{
+    margin-bottom: 2% !important;
+}
+#img-product{
+    width: 94% ;
+    border-radius: 50%;
+}

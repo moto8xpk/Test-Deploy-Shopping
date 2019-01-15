@@ -1,0 +1,221 @@
+<div id="top-bar" class="row">
+    <button type="button" (click)="open(contentRegister)" class="btn btn-primary">Insert New Customer</button>
+</div>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <!-- <tbody *ngIf="persons?.length != 0"> -->
+    <tbody *ngIf="persons?.length != 0">
+      <tr *ngFor="let person of persons">
+        <td>{{ person.id }}</td>
+        <td>{{ person.name }}</td>
+        <td>{{ person.username }}</td>
+        <td>{{ person.password }}</td>
+        <td>{{ person.address }}</td>
+        <td>{{ person.phone }}</td>
+        <td>{{ person.email }}</td>
+        <td>
+          <a (click)="onDeleteCustomer(person.id)">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </a>
+          -
+          <a (click)="onUpdateCustomer(content,person.id)">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+    <!-- <tbody *ngIf="persons?.length == 0">
+      <tr>
+        <td colspan="7" class="no-data-available">No data!</td>
+      </tr>
+    <tbody> -->
+  </table>
+<ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Profile</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+            <form (ngSubmit)="onUpdateSubmit()" #customerForm="ngForm">
+                <!-- {{diagnostic}} -->
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Fullname</label>
+                    <input type="text" class="form-control" id="name" [(ngModel)]="model.name" name="name" #name="ngModel"
+                      required placeholder="Enter Fullname">
+                    <small id="emailHelp" class="form-text text-muted"></small>
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                        <div *ngIf="name?.errors?.required">
+                            Fullname is required
+                          </div>
+                    </div>
+                  </div>
+          
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input type="email" class="form-control" id="email" [(ngModel)]="model.email" name="email" #email="ngModel"
+                        required placeholder="Enter Email">
+                      <small id="emailHelp" class="form-text text-muted"></small>
+                      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                          <div *ngIf="email?.errors?.required">
+                              Email is required
+                            </div>
+                      </div>
+                    </div>
+          
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Address</label>
+                        <input type="text" class="form-control" id="address" [(ngModel)]="model.address" name="address" #address="ngModel"
+                          required placeholder="Enter Address">
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+                            <div *ngIf="address?.errors?.required">
+                                Address is required
+                              </div>
+                        </div>
+                      </div>
+          
+                      <div class="form-group">
+                          <label for="exampleInputEmail1">Phone Number</label>
+                          <input type="text" class="form-control" id="phone" [(ngModel)]="model.phone" name="phone" #phone="ngModel"
+                            required placeholder="Enter Username">
+                          <small id="emailHelp" class="form-text text-muted"></small>
+                          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+                              <div *ngIf="phone?.errors?.required">
+                                  Phone Number is required
+                                </div>
+                          </div>
+                        </div>
+          
+          
+                <button type="submit" class="btn btn-primary" [disabled]='!customerForm.valid'>Submit</button>
+              </form>
+          <!-- {{messageString}} -->
+      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" [hidden]="true" (click)="modal.close('Save click')">Save</button>
+          <button type="button" class="btn btn-outline-dark"  (click)="modal.dismiss('Save click')">Cancel</button>
+        </div>
+      </ng-template>
+
+      <ng-template #contentRegister let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Profile</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+          <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+            <!-- {{diagnostic}} -->
+            <div class="form-group">
+              <label for="exampleInputEmail1">Username</label>
+              <input type="text" class="form-control" id="username1" [(ngModel)]="model1.username" name="username1" #username="ngModel"
+                required placeholder="Enter Username">
+              <small id="emailHelp1" class="form-text text-muted"></small>
+              <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                  <div *ngIf="username?.errors?.required">
+                      Username is required
+                    </div>
+              </div>
+            </div>
+      
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="password" [(ngModel)]="model1.password" name="password"
+                #password="ngModel" required placeholder="Password">
+              <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                  <div *ngIf="password?.errors?.required">
+                       Password is required
+                    </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Retype password</label>
+              <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="model1.confirmPassword" name="confirmPassword"
+                #confirmPassword="ngModel" required compare="password" placeholder="Retype password">
+      
+              <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="alert alert-danger">
+                <div *ngIf="confirmPassword?.errors?.required">
+                  Retype password is required
+                </div>
+                <div *ngIf="confirmPassword?.errors?.compare">
+                  Password not match
+                </div>
+              </div>
+            </div>
+      
+            <div class="form-group">
+                <label for="exampleInputEmail1">Fullname</label>
+                <input type="text" class="form-control" id="name1" [(ngModel)]="model1.name" name="name1" #name="ngModel"
+                  required placeholder="Enter Fullname">
+                <small id="emailHelp1" class="form-text text-muted"></small>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                    <div *ngIf="name?.errors?.required">
+                        Fullname is required
+                      </div>
+                </div>
+              </div>
+      
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Email</label>
+                  <input type="email" class="form-control" id="email1" [(ngModel)]="model1.email" name="email1" #email="ngModel"
+                    required placeholder="Enter Email">
+                  <small id="emailHelp1" class="form-text text-muted"></small>
+                  <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                      <div *ngIf="email?.errors?.required">
+                          Email is required
+                        </div>
+                  </div>
+                </div>
+      
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Address</label>
+                    <input type="text" class="form-control" id="address1" [(ngModel)]="model1.address" name="address1" #address="ngModel"
+                      required placeholder="Enter Address">
+                    <small id="emailHelp1" class="form-text text-muted"></small>
+                    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+                        <div *ngIf="address?.errors?.required">
+                            Address is required
+                          </div>
+                    </div>
+                  </div>
+      
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Phone Number</label>
+                      <input type="text" class="form-control" id="phone1" [(ngModel)]="model1.phone" name="phone1" #phone="ngModel"
+                        required placeholder="Enter Username">
+                      <small id="emailHelp12" class="form-text text-muted"></small>
+                      <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+                          <div *ngIf="phone?.errors?.required">
+                              Phone Number is required
+                            </div>
+                      </div>
+                    </div>
+      
+      
+            <button type="submit" class="btn btn-primary" [disabled]='!registerForm.valid'>Submit</button>
+          </form>
+          <!-- {{messageString}} -->
+      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" [hidden]="true" (click)="modal.close('Save click')">Save</button>
+          <button type="button" class="btn btn-outline-dark"  (click)="modal.dismiss('Save click')">Cancel</button>
+        </div>
+      </ng-template>

@@ -1,0 +1,19 @@
+.nav-link{
+    color: #3c7883 !important;
+    font-weight: bold;
+    display: contents;
+}
+.nav-item{
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+} 
+.bg-light{
+    background-color: #efdcbc !important;
+}
+#navbar-center{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 80% !important;
+    margin: 10px auto;
+    border-radius: 25px;
+}

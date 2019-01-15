@@ -17,14 +17,15 @@
 
 //Install express server
 const express = require('express');
-const path = require('path');
 
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist/shopping-store'));
+app.use(express.static(__dirname + '/dist'));
 
-app.get('/*', function(req,res) {
+const path = require('path');
+
+app.get('/*all', function(req,res) {
     
 res.sendFile(path.join(__dirname+'/dist/index.html'));
 });
